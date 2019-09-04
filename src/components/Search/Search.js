@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Country from "../Country/Country";
+import "./Search.css";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -51,10 +53,13 @@ export default class Search extends React.Component {
     return (
       <section>
         <div>
-          <p>Where Are You From?</p>
+          <p id="search-title">Where Are You From?</p>
+        </div>
+        <div id="my-itinerary-link">
+          <Link to="/itinerary">My Itinerary</Link>
         </div>
         <div>
-          <form onSubmit={this.submitSearchHandle}>
+          <form onSubmit={this.submitSearchHandle} className="search-form">
             <label htmlFor="search-country-input">Search:</label>
             <input
               onChange={e => this.inputChangeHandle(e.target.value)}
@@ -62,7 +67,8 @@ export default class Search extends React.Component {
               name="search-countries"
               id="search-input"
             />
-            <button>Search</button>
+            <br />
+            <button id="search-button">Search</button>
           </form>
         </div>
         <div>

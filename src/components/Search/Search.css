@@ -1,0 +1,22 @@
+#search-title {
+  text-align: center;
+  font-size: 24px;
+}
+
+.search-form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#search-input {
+  border: 1px solid black;
+}
+
+#search-button {
+  background-color: grey;
+  margin-top: 10px;
+}
+
+#my-itinerary-link {
+  text-align: center;
+}
