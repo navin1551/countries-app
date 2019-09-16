@@ -5,7 +5,7 @@ import "./Home.css";
 export default class Home extends React.Component {
   render() {
     return (
-      <section>
+      <section className="home-area">
         <div>
           <p className="home-title">Welcome to Countries!</p>
         </div>
