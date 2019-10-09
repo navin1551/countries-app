@@ -10,7 +10,8 @@ export default class Search extends React.Component {
     this.state = {
       query: "",
       searchResults: [],
-      ytResults: []
+      ytResults: [],
+      selectedVideo: null
     };
   }
 
@@ -71,7 +72,8 @@ export default class Search extends React.Component {
       .then(response => {
         console.log(response.data.items);
         this.setState({
-          ytResults: response.data.items
+          ytResults: response.data.items,
+          selectedVideo: response.data.items[0]
         });
       })
       .catch(error => {
@@ -92,7 +94,7 @@ export default class Search extends React.Component {
         key={country.numericCode}
         capital={country.capital}
         flag={country.flag}
-        video={this.state.ytResults}
+        video={this.state.selectedVideo}
       />
     ));
 
