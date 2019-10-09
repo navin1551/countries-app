@@ -20,62 +20,35 @@ export default class Search extends React.Component {
     let search = this.state.query;
     let url = `https://restcountries.eu/rest/v2/name/${search}`;
 
-    fetch(url)
-      .then(res => {
-        if (!res.ok) {
+    Promise.all([
+      fetch(url),
+      Youtube.get("search", {
+        params: {
+          part: "snippet",
+          maxResults: 3,
+          key: "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw",
+          q: this.state.query
+        }
+      })
+    ])
+
+      .then(responses => {
+        const countriesRes = responses[0];
+        const ytResponse = responses[1];
+        if (!countriesRes) {
           throw new Error("Something went wrong, please try again later");
         }
-        return res.json();
-      })
-      .then(responseData => {
-        console.log(responseData);
-        this.setState({
-          searchResults: responseData
+        countriesRes.json().then(responseData => {
+          console.log(ytResponse);
+          console.log(responseData);
+          this.setState({
+            searchResults: responseData,
+            ytResults: ytResponse.data.items,
+            selectedVideo: ytResponse.data.items[0]
+          });
         });
       })
-      .catch(error => {
-        console.log({ error });
-      });
 
-    /*const apiKey = "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw";
-    const channelId = "UCXgGY0wkgOzynnHvSEVmE3A";
-    const results = 10;
-    let ytURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${results}`;
-
-    fetch(ytURL)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Something went wrong, please try again later");
-        }
-        return response.json();
-      })
-      .then(ytRes => {
-        console.log(ytURL);
-        const resultYT = ytRes.items.map(
-          obj => "https://www.youtube.com/embed/" + obj.id.videoId
-        );
-        this.setState({
-          resultYT
-        });
-      })
-      .catch(error => {
-        console.log({ error });
-      });*/
-    Youtube.get("search", {
-      params: {
-        part: "snippet",
-        maxResults: 3,
-        key: "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw",
-        q: this.state.query
-      }
-    })
-      .then(response => {
-        console.log(response.data.items);
-        this.setState({
-          ytResults: response.data.items,
-          selectedVideo: response.data.items[0]
-        });
-      })
       .catch(error => {
         console.log({ error });
       });
@@ -126,3 +99,28 @@ export default class Search extends React.Component {
     );
   }
 }
+
+/*const apiKey = "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw";
+    const channelId = "UCXgGY0wkgOzynnHvSEVmE3A";
+    const results = 10;
+    let ytURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${results}`;
+
+    fetch(ytURL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Something went wrong, please try again later");
+        }
+        return response.json();
+      })
+      .then(ytRes => {
+        console.log(ytURL);
+        const resultYT = ytRes.items.map(
+          obj => "https://www.youtube.com/embed/" + obj.id.videoId
+        );
+        this.setState({
+          resultYT
+        });
+      })
+      .catch(error => {
+        console.log({ error });
+      });*/

@@ -24,9 +24,9 @@ export default class Country extends React.Component {
   };
 
   render() {
-    //const videoSrc = `https://www.youtube.com/embed/${this.props.video.id.videoId}`;
+    const videoSrc = `https://www.youtube.com/embed/${this.props.video.id.videoId}`;
 
-    console.log(this.props.video.id);
+    console.log(this.props.video.id.videoId);
 
     return (
       <div>
