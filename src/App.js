@@ -12,7 +12,7 @@ export default class App extends React.Component {
   };
 
   addToItinerary = country => {
-    let currentItinerary = this.state.itinerary;
+    let currentItinerary = [...this.state.itinerary];
     currentItinerary.push(country);
     this.setState({
       itinerary: currentItinerary

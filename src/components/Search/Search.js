@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Country from "../Country/Country";
+import Youtube from "../YouTube/YouTube";
 import "./Search.css";
 
 export default class Search extends React.Component {
@@ -8,7 +9,8 @@ export default class Search extends React.Component {
     super(props);
     this.state = {
       query: "",
-      searchResults: []
+      searchResults: [],
+      ytResults: []
     };
   }
 
@@ -33,11 +35,53 @@ export default class Search extends React.Component {
       .catch(error => {
         console.log({ error });
       });
+
+    /*const apiKey = "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw";
+    const channelId = "UCXgGY0wkgOzynnHvSEVmE3A";
+    const results = 10;
+    let ytURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${results}`;
+
+    fetch(ytURL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Something went wrong, please try again later");
+        }
+        return response.json();
+      })
+      .then(ytRes => {
+        console.log(ytURL);
+        const resultYT = ytRes.items.map(
+          obj => "https://www.youtube.com/embed/" + obj.id.videoId
+        );
+        this.setState({
+          resultYT
+        });
+      })
+      .catch(error => {
+        console.log({ error });
+      });*/
+    Youtube.get("search", {
+      params: {
+        part: "snippet",
+        maxResults: 3,
+        key: "AIzaSyDxGVV8s4fkoLJxhx24C5MLHeKDgsekhKw",
+        q: this.state.query
+      }
+    })
+      .then(response => {
+        console.log(response.data.items);
+        this.setState({
+          ytResults: response.data.items
+        });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
   };
 
-  inputChangeHandle = query => {
+  inputChangeHandle = e => {
     this.setState({
-      query
+      query: e.target.value
     });
   };
 
@@ -48,26 +92,28 @@ export default class Search extends React.Component {
         key={country.numericCode}
         capital={country.capital}
         flag={country.flag}
+        video={this.state.ytResults}
       />
     ));
+
     return (
       <section>
         <div>
-          <p id="search-title">Where Are You From?</p>
+          <p id="search-title">Where Do You Want To Go?</p>
         </div>
         <div id="my-itinerary-link">
           <Link to="/itinerary">My Itinerary</Link>
         </div>
         <div>
           <form onSubmit={this.submitSearchHandle} className="search-form">
-            <label htmlFor="search-country-input">Search:</label>
+            <label htmlFor="search-country-input">Search Countries:</label>
+            <br />
             <input
-              onChange={e => this.inputChangeHandle(e.target.value)}
+              onChange={this.inputChangeHandle}
               type="text"
               name="search-countries"
               id="search-input"
             />
-            <br />
             <button id="search-button">Search</button>
           </form>
         </div>
