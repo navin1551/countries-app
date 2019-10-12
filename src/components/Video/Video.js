@@ -1,5 +1,4 @@
 import React from "react";
-import { Player } from "video-react";
 import "./Video.css";
 
 const Video = props => {
@@ -9,7 +8,7 @@ const Video = props => {
 
   return (
     <div id="video-container">
-      <Player src={videoSrc} />
+      <iframe src={videoSrc} />
     </div>
   );
 };
