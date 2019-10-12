@@ -1,4 +1,5 @@
 import React from "react";
+import Video from "../Video/Video";
 import "./Country.css";
 import CountriesContext from "../../CountriesContext";
 
@@ -24,10 +25,6 @@ export default class Country extends React.Component {
   };
 
   render() {
-    const videoSrc = `https://www.youtube.com/embed/${this.props.video.id.videoId}`;
-
-    console.log(this.props.video.id.videoId);
-
     return (
       <div>
         <form onSubmit={this.addToItinerary}>
@@ -40,6 +37,8 @@ export default class Country extends React.Component {
               alt="country flags"
               className="country-flags"
             />
+            <br />
+            <Video video={this.props.video} />
             <br />
             <button id="interested-button">I'm Interested</button>
           </li>
