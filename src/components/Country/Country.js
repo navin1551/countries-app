@@ -40,7 +40,7 @@ export default class Country extends React.Component {
             <br />
             <Video video={this.props.video} />
             <br />
-            <button id="interested-button">I'm Interested</button>
+            {/*<button id="interested-button">I'm Interested</button>*/}
           </li>
         </form>
       </div>

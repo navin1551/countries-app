@@ -74,7 +74,7 @@ export default class Search extends React.Component {
     return (
       <section>
         <div>
-          <p id="search-title">Where Do You Want To Go?</p>
+          <p id="search-title">Where Do You Want To Explore?</p>
         </div>
         <div id="my-itinerary-link">
           <Link to="/itinerary">My Itinerary</Link>
