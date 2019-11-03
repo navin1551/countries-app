@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Itinerary from "./components/Itinerary/Itinerary";
 import CountriesContext from "./CountriesContext";
 import Store from "./Store";
+import "./App.css";
 
 export default class App extends React.Component {
   state = {
