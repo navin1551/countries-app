@@ -1,13 +1,22 @@
 .country-flags {
-  width: 200px;
-  height: 100px;
+  width: 250px;
+  height: 150px;
 }
 
 .country-list-items {
   list-style: none;
-  text-align: center;
 }
 
 #interested-button {
   background-color: grey;
+}
+
+.country-name {
+  font-size: 36px;
+  text-align: center;
+}
+
+.country-area {
+  margin-right: auto;
+  margin-left: auto;
 }

@@ -26,17 +26,17 @@ export default class Country extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="country-area">
         <form onSubmit={this.addToItinerary}>
           <li className="country-list-items">
-            <p>{this.props.name}</p>
-            <span>{this.props.capital}</span>
-            <br />
+            <p className="country-name">{this.props.name}</p>
             <img
               src={this.props.flag}
               alt="country flags"
               className="country-flags"
             />
+            <br />
+            <span>{this.props.capital}</span>
             <br />
             <Video video={this.props.video} />
             <br />

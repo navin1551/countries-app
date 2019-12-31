@@ -72,25 +72,27 @@ export default class Search extends React.Component {
     ));
 
     return (
-      <section>
-        <div>
-          <p id="search-title">Where Do You Want To Explore?</p>
-        </div>
-        <div id="my-itinerary-link">
+      <section className="search-page">
+        <div className="white">
+          <div className="white">
+            <p id="search-title">Where Do You Want To Explore?</p>
+          </div>
+          {/*<div id="my-itinerary-link">
           <Link to="/itinerary">My Itinerary</Link>
-        </div>
-        <div>
-          <form onSubmit={this.submitSearchHandle} className="search-form">
-            <label htmlFor="search-country-input">Search Countries:</label>
-            <br />
-            <input
-              onChange={this.inputChangeHandle}
-              type="text"
-              name="search-countries"
-              id="search-input"
-            />
-            <button id="search-button">Search</button>
-          </form>
+    </div>*/}
+          <div className="white">
+            <form onSubmit={this.submitSearchHandle} className="search-form">
+              <label htmlFor="search-country-input">Search Countries:</label>
+              <br />
+              <input
+                onChange={this.inputChangeHandle}
+                type="text"
+                name="search-countries"
+                id="search-input"
+              />
+              <button id="search-button">Search</button>
+            </form>
+          </div>
         </div>
         <div>
           <ul>{countryResults}</ul>

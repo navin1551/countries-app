@@ -24,7 +24,7 @@ export default function Home() {
         <p className="home-title">Welcome to Countries!</p>
       </div>
       <div>
-        <p className="home-info">View different countries and information</p>
+        <p className="home-info">Let's Go</p>
       </div>
       <div id="home-link">
         <Link to="/search">Lets Start</Link>
